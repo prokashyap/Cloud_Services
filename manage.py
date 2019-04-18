@@ -10,19 +10,19 @@ from subprocess import call
 #-----------------Functions-----------------
 #Depending on which cloud was selected, actions will be taken
 def cloud_selector():
-    print "Please enter the value:\n1 for G cloud\n2 for AWS\n3 for Azure"
+    print ("Please enter the value:\n1 for G cloud\n2 for AWS\n3 for Azure")
     selector = input("\nEnter the value : ")
 
     if selector == 1:
-        print "Selected cloud is G cloud\n"
+        print ("Selected cloud is G cloud\n")
         gcloud_creator()
 
     elif selector == 2:
-        print "Selected cloud is AWS\nAWS Configuration is not available for now\n"
+        print ("Selected cloud is AWS\nAWS Configuration is not available for now\n")
     elif selector == 3:
-        print "Selected cloud is Azure\nAzure Configuration is not available for now\n"
+        print ("Selected cloud is Azure\nAzure Configuration is not available for now\n")
     else:
-        print "Please select a value between 1 to 3"
+        print ("Please select a value between 1 to 3")
         exit()
 
 
@@ -30,7 +30,7 @@ def cloud_selector():
 def gcloud_creator():
 
     #Vm Options
-    print "Select among following : \n1.Create a vm\n2.Delete a vm\n3.Vm details\n"
+    print ("Select among following : \n1.Create a vm\n2.Delete a vm\n3.Vm details\n")
     action = input("Enter the value\n")
 
     #Conditions based on value
@@ -51,7 +51,7 @@ def gcloud_creator():
 
         #This will execute the gcloud command from the terminal
         os.system(gcloud_command)
-        print "Machine succesfully created : " + str(cpu) + " core " + str(ram) + " MB RAM"
+        print ("Machine succesfully created : " + str(cpu) + " core " + str(ram) + " MB RAM")
 
         #This will execute the command which will fetch external Ip of the new vm
         IP = commands.getoutput(external_ip)
@@ -59,7 +59,7 @@ def gcloud_creator():
         #print IP
         #installer_and_verfier(IP)
         #Some messages
-        print "Please wait while telegraf is getting installed and configured\n"
+        print ("Please wait while telegraf is getting installed and configured\n")
 
         #This command will log in the newly created vm and wget the telegraf rpm file
         login_and_wget_command = "ssh " + str(IP) + " wget https://dl.influxdata.com/telegraf/releases/telegraf-1.6.2-1.x86_64.rpm"
@@ -96,14 +96,14 @@ def gcloud_creator():
 
     #This will delete the selected vm
     elif action==2:
-        print "Not added yet"
+        print ("Not added yet")
 
     #This will show the details of compute engine
     elif action==3:
-        print "Below are the details for compute engine\n"
+        print ("Below are the details for compute engine\n")
         os.system('gcloud compute instances list')
     else:
-        print "Incorrect selection"
+        print ("Incorrect selection")
 
 if __name__=="__main__":
     cloud_selector()
